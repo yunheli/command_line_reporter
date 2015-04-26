@@ -1,5 +1,5 @@
 require 'colored'
-
+require 'unicode/display_width'
 module CommandLineReporter
   class Column
     include OptionsValidator
@@ -29,6 +29,7 @@ module CommandLineReporter
     end
 
     def required_width
+      puts 'iiiiiiiiii',self.text.to_s.size + 2 * self.padding
       self.text.to_s.size + 2 * self.padding
     end
 
@@ -58,11 +59,11 @@ module CommandLineReporter
     def aligned_cell(str)
       case self.align
       when 'left'
-        str.ljust(self.size)
+        str.ljust(self.size - (str.display_width - str.length))
       when 'right'
-        str.rjust(self.size)
+        str.rjust(self.size - (str.display_width - str.length))
       when 'center'
-        str.ljust((self.size - str.size)/2.0 + str.size).rjust(self.size)
+        str.ljust((self.size- (str.display_width - str.length) - str.size)/2.0 + str.size).rjust(self.size - (str.display_width - str.length))
       end
     end
 

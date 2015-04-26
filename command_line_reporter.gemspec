@@ -19,6 +19,9 @@ Gem::Specification.new do |gem|
   gem.test_files = Dir['spec/**/*'] & `git ls-files -z`.split("\0")
 
   gem.add_development_dependency "bundler", ">= 1.0.0"
+
   gem.add_dependency "colored", ">= 1.2"
+
+  gem.add_dependency "unicode-display_width", ">= 0.1", '~> 0.2.0'
 end
 
