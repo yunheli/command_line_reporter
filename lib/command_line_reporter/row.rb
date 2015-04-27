@@ -1,3 +1,4 @@
+require 'unicode/display_width'
 module CommandLineReporter
   class Row
     include OptionsValidator
@@ -55,15 +56,18 @@ module CommandLineReporter
           # | xxxxxxxxxxx |            | (3)
           # | xxxxxxxxxxx |            | (4)
           # +-------------+------------+
+          _width = 0;
           if col.screen_rows[sr].nil?
             line << ' ' * col.width << ' '
+            _width = col.width
           else
             line << self.columns[mc].screen_rows[sr] << ' '
+            _width = self.columns[mc].screen_rows[sr].display_width
           end
 
           if self.border
             line << border_char
-            line << ' ' if mc < self.columns.size - 1
+            line << ' ' if _width < self.columns.size - 1
           end
         end
 
