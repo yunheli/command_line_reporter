@@ -46,13 +46,16 @@ module CommandLineReporter
       s = ""
       arr = []
       text.scan(/./).each do |x|
-        if i > self.size
+        if i > 3
           i = 0
           arr.push(s)
           s = ""
         end
         s += x
         i += x.display_width
+      end
+      if s.length > 0
+        arr.push(s)
       end
       arr
     end
