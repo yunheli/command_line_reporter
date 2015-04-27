@@ -36,29 +36,8 @@ module CommandLineReporter
       if self.text.nil? || self.text.empty?
         [' ' * self.width]
       else
-        #todo
-        #self.text.scan(/.{1,#{self.size}}/m).map {|s| to_cell(s)}
-        split_text(self.text).map {|s| to_cell(s)}
+        self.text.scan(/.{1,#{self.size}}/m).map {|s| to_cell(s)}
       end
-    end
-
-    def split_text  text
-      i = 0
-      s = ""
-      arr = []
-      text.scan(/./).each do |x|
-        if i > self.size
-          i = 0
-          arr.push(s)
-          s = ""
-        end
-        s += x
-        i += x.display_width
-      end
-      if s.length > 0
-        arr.push(s)
-      end
-      arr
     end
 
     private
