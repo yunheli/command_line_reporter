@@ -29,7 +29,6 @@ module CommandLineReporter
     end
 
     def required_width
-      puts 'iiiiiiiiii',self.text.to_s.size + 2 * self.padding
       self.text.to_s.size + 2 * self.padding
     end
 
