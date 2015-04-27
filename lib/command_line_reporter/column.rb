@@ -37,7 +37,8 @@ module CommandLineReporter
         [' ' * self.width]
       else
         #todo
-        self.text.scan(/.{1,#{self.size}}/m).map {|s| to_cell(s)}
+        #self.text.scan(/.{1,#{self.size}}/m).map {|s| to_cell(s)}
+        split_text(self.text).map {|s| to_cell(s)}
       end
     end
 
@@ -46,7 +47,7 @@ module CommandLineReporter
       s = ""
       arr = []
       text.scan(/./).each do |x|
-        if i > 3
+        if i > self.size
           i = 0
           arr.push(s)
           s = ""
